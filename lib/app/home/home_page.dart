@@ -1,61 +1,41 @@
-import 'package:expenses_ap/app/models/transaction.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatelessWidget {
-  MyHomePage({super.key});
+import '../components/transaction_user.dart';
 
-  final _transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Novo Tênis de Corrida',
-      value: 310.76,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de luz',
-      value: 211.30,
-      date: DateTime.now(),
-    )
-  ];
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.cyan,
         centerTitle: true,
-        title: const Text('Expenses APP'),
+        title: const Text(
+          'Expenses APP',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Card(
-            child: Container(
-              width: double.infinity,
-              color: Colors.blue,
-              child: const Text('Grafico'),
-            ),
-          ),
-          Column(
-            children: _transactions.map((tr) {
-              return Card(
-                child: Row(
-                  children: [
-                    Text(tr.value.toString()),
-                    Column(
-                      children: [
-                        Text(tr.title),
-                        Text(tr.date.toString()),
-                      ],
-                    )
-                  ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Card(
+              child: Container(
+                width: double.infinity,
+                color: Colors.amber,
+                child: const Text(
+                  'Grafico',
+                  style: TextStyle(color: Colors.black),
                 ),
-              );
-            }).toList(),
-          ),
-        ],
+              ),
+            ),
+            const TransactionUser()
+          ],
+        ),
       ),
     );
   }
