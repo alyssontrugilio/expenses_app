@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'app/app_widget.dart';
 
 void main() {
@@ -14,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ExpensesApp',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         colorSchemeSeed: Colors.cyan,

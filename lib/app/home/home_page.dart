@@ -1,7 +1,10 @@
-import 'package:expenses_ap/app/components/transaction_form.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-import '../components/transaction_user.dart';
+import '../components/transaction_form.dart';
+import '../components/transaction_list.dart';
+import '../models/transaction.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -11,6 +14,44 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _transactions = [
+    Transaction(
+      id: 't1',
+      title: 'Novo Tênis de Corrida',
+      value: 310.76,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Conta de luz',
+      value: 211.30,
+      date: DateTime.now(),
+    ),
+  ];
+
+  _addTransaction(String title, double value) {
+    final newTransaction = Transaction(
+      id: Random().nextDouble().toString(),
+      title: title,
+      value: value,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+
+    Navigator.pop(context);
+  }
+
+  _openTransactionFormModal() {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return TransactionForm(_addTransaction);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,27 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (_) {
-                    return Card(
-                      child: Column(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20),
-                            child: Text(
-                              'Adicionar uma nova transação',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                          ),
-                          TransactionForm((p0, p1) {})
-                        ],
-                      ),
-                    );
-                  });
-            },
+            onPressed: () => _openTransactionFormModal(),
             icon: const Icon(
               Icons.add,
               color: Colors.black,
@@ -68,33 +89,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            const TransactionUser()
+            TransactionList(transactions: _transactions),
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (_) {
-                return Card(
-                  child: Column(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        child: Text(
-                          'Adicionar uma nova transação',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                      ),
-                      TransactionForm((p0, p1) {})
-                    ],
-                  ),
-                );
-              });
-        },
+        onPressed: () => _openTransactionFormModal(),
         child: const Icon(Icons.add),
       ),
     );
