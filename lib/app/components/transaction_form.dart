@@ -54,9 +54,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 onPressed: _subimitForm,
                 child: const Text(
                   'Adicionar',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+                  style: TextStyle(),
                 ))
           ],
         ),

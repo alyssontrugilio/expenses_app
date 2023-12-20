@@ -56,13 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
         centerTitle: true,
         title: const Text(
           'Expenses APP',
           style: TextStyle(
+            fontFamily: 'OpenSans',
             fontWeight: FontWeight.bold,
-            color: Colors.black,
           ),
         ),
         actions: [
@@ -70,27 +69,27 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => _openTransactionFormModal(),
             icon: const Icon(
               Icons.add,
-              color: Colors.black,
             ),
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Card(
-              child: Container(
-                width: double.infinity,
-                color: Colors.amber,
-                child: const Text(
-                  'Grafico',
-                  style: TextStyle(color: Colors.black),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Card(
+                child: Container(
+                  width: double.infinity,
+                  color: Colors.blueGrey,
+                  child: const Text(
+                    'Grafico',
+                  ),
                 ),
               ),
-            ),
-            TransactionList(transactions: _transactions),
-          ],
+              TransactionList(transactions: _transactions),
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
