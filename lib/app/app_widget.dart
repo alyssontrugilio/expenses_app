@@ -8,12 +8,14 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'ExpensesApp',
+        title: 'Expenses App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             useMaterial3: true,
-            primaryColor: Colors.blueGrey,
-            brightness: Brightness.dark,
+            colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.amber, brightness: Brightness.dark),
+
+            // brightness: Brightness.dark,
             fontFamily: 'Quicksand'),
         home: const MyHomePage());
   }
