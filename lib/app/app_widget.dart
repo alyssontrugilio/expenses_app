@@ -11,12 +11,13 @@ class AppWidget extends StatelessWidget {
         title: 'Expenses App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.amber, brightness: Brightness.dark),
-
-            // brightness: Brightness.dark,
-            fontFamily: 'Quicksand'),
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blueGrey,
+            brightness: Brightness.dark,
+          ),
+          fontFamily: 'Quicksand',
+        ),
         home: const MyHomePage());
   }
 }
