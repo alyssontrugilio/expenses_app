@@ -5,10 +5,7 @@ import 'package:intl/intl.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransaction;
-  const Chart({
-    super.key,
-    required this.recentTransaction,
-  });
+ const Chart(this.recentTransaction, {Key? key}) : super(key: key);
 
   List<Map<String, dynamic>> get groupedTransactions {
     return List.generate(
@@ -63,7 +60,7 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 label: tr['day'],
                 value: tr['value'],
-                porcentage: _weekTotalValue == 0
+                percentage: _weekTotalValue == 0
                     ? 0
                     : (tr['value'] as double) / _weekTotalValue,
               ),
